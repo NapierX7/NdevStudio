@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDev Studio | Confirmação de pagamento</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a class="brand" href="index.html" aria-label="Voltar para o site">
+                <span class="brand-name"><span class="brand-ndev">NDev</span> <span class="brand-studio">Studio</span></span>
+            </a>
+            <a class="button ghost confirm-back" href="index.html#planos">Voltar</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="section confirm">
+            <div class="container">
+                <div class="confirm-card animate-slide-up">
+                    <div class="confirm-icon" id="confirm-icon">
+                        <i class="fas fa-circle-check"></i>
+                    </div>
+                    <h1 class="confirm-title" id="confirm-title">Pagamento recebido</h1>
+                    <p class="confirm-subtitle" id="confirm-subtitle">Se você já concluiu o checkout, me chame e eu começo seu projeto.</p>
+                    <div class="confirm-meta" id="confirm-meta" aria-live="polite"></div>
+                    <div class="confirm-actions">
+                        <a class="button primary" id="confirm-whatsapp" href="https://wa.me/5561982352620?text=Ol%C3%A1%21%20Acabei%20de%20fazer%20o%20pagamento%20no%20Mercado%20Pago%20e%20quero%20iniciar%20meu%20site.%20Meu%20nome%3A%20%5BSeu%20nome%5D" target="_blank" rel="noreferrer">
+                            <i class="fab fa-whatsapp"></i> Falar comigo no WhatsApp
+                        </a>
+                        <a class="button ghost" href="index.html#demos">
+                            Ver demos
+                        </a>
+                    </div>
+                    <div class="confirm-tip">
+                        <div class="info-box">
+                            <div class="info-row">
+                                <span><i class="fas fa-shield-heart"></i> Pagamento via Mercado Pago (Cartão/Pix)</span>
+                                <span><i class="fas fa-message"></i> Atendimento rápido pelo WhatsApp</span>
+                            </div>
+                            <div class="info-row subtle">
+                                <span><i class="fas fa-receipt"></i> Se quiser, envie o comprovante na conversa</span>
+                                <span><i class="fas fa-wand-magic-sparkles"></i> Eu adapto o modelo para sua marca</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const rawStatus = (params.get("status") || params.get("collection_status") || "").toLowerCase();
+        const paymentId = params.get("payment_id") || params.get("collection_id") || "";
+        const preferenceId = params.get("preference_id") || "";
+        const externalRef = params.get("external_reference") || "";
+        const merchantOrderId = params.get("merchant_order_id") || "";
+
+        const titleEl = document.getElementById("confirm-title");
+        const subtitleEl = document.getElementById("confirm-subtitle");
+        const iconEl = document.getElementById("confirm-icon");
+        const metaEl = document.getElementById("confirm-meta");
+        const whatsappEl = document.getElementById("confirm-whatsapp");
+
+        const status = rawStatus || "unknown";
+        const statusMap = {
+            approved: {
+                title: "Pagamento aprovado",
+                subtitle: "Perfeito. Me chame no WhatsApp para eu iniciar o seu projeto."
+            },
+            pending: {
+                title: "Pagamento pendente",
+                subtitle: "Assim que confirmar, me chame no WhatsApp e eu começo seu projeto."
+            },
+            in_process: {
+                title: "Pagamento em análise",
+                subtitle: "Assim que confirmar, me chame no WhatsApp e eu começo seu projeto."
+            },
+            rejected: {
+                title: "Pagamento não aprovado",
+                subtitle: "Se quiser, me chame no WhatsApp que eu te ajudo a finalizar o pagamento."
+            }
+        };
+
+        const resolved = statusMap[status];
+        if (resolved) {
+            titleEl.textContent = resolved.title;
+            subtitleEl.textContent = resolved.subtitle;
+            if (status === "rejected") {
+                iconEl.innerHTML = '<i class="fas fa-triangle-exclamation"></i>';
+            }
+        }
+
+        const parts = [];
+        if (paymentId) parts.push(`Pagamento: ${paymentId}`);
+        if (merchantOrderId) parts.push(`Pedido: ${merchantOrderId}`);
+        if (preferenceId) parts.push(`Preferência: ${preferenceId}`);
+        if (externalRef) parts.push(`Ref: ${externalRef}`);
+        if (parts.length) {
+            metaEl.textContent = parts.join(" • ");
+        }
+
+        const messageParts = [
+            "Olá! Acabei de concluir o pagamento no Mercado Pago e quero iniciar meu site."
+        ];
+        if (paymentId) messageParts.push(`Pagamento: ${paymentId}`);
+        if (merchantOrderId) messageParts.push(`Pedido: ${merchantOrderId}`);
+        if (externalRef) messageParts.push(`Ref: ${externalRef}`);
+        messageParts.push("Pode me orientar nos próximos passos?");
+
+        const msg = encodeURIComponent(messageParts.join(" | "));
+        whatsappEl.href = `https://wa.me/5561982352620?text=${msg}`;
+
+        async function syncStatusFromApi() {
+            if (!paymentId) return;
+
+            metaEl.textContent = [
+                parts.join(" • "),
+                "Validando pagamento…"
+            ].filter(Boolean).join(" • ");
+
+            try {
+                const res = await fetch(`/.netlify/functions/mp-payment-status?payment_id=${encodeURIComponent(paymentId)}`, {
+                    method: "GET",
+                    headers: { Accept: "application/json" }
+                });
+                const json = await res.json().catch(() => null);
+                if (!res.ok || !json?.ok) {
+                    metaEl.textContent = parts.join(" • ");
+                    return;
+                }
+
+                const apiStatus = String(json?.payment?.status ?? "").toLowerCase();
+                const apiExternalRef = String(json?.payment?.external_reference ?? "").trim();
+                const apiResolved = statusMap[apiStatus];
+
+                if (apiResolved) {
+                    titleEl.textContent = apiResolved.title;
+                    subtitleEl.textContent = apiResolved.subtitle;
+                    if (apiStatus === "rejected") {
+                        iconEl.innerHTML = '<i class="fas fa-triangle-exclamation"></i>';
+                    } else {
+                        iconEl.innerHTML = '<i class="fas fa-circle-check"></i>';
+                    }
+                }
+
+                const refreshedParts = [];
+                refreshedParts.push(`Pagamento: ${paymentId}`);
+                if (merchantOrderId) refreshedParts.push(`Pedido: ${merchantOrderId}`);
+                if (preferenceId) refreshedParts.push(`Preferência: ${preferenceId}`);
+                if (apiExternalRef || externalRef) refreshedParts.push(`Ref: ${apiExternalRef || externalRef}`);
+                refreshedParts.push("Status confirmado");
+                metaEl.textContent = refreshedParts.join(" • ");
+            } catch {
+                metaEl.textContent = parts.join(" • ");
+            }
+        }
+
+        syncStatusFromApi();
+    </script>
+</body>
+</html>
