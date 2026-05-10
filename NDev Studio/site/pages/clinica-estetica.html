@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Lumina | Estética Avançada</title>
+    <link rel="stylesheet" href="../css/minisite.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f5f9ff;
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --highlight: #0ea5e9;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+        }
+
+        .logo {
+            color: var(--text-primary);
+        }
+
+        .nav-links a {
+            color: rgba(15, 23, 42, 0.72);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .about {
+            background: linear-gradient(180deg, rgba(37, 99, 235, 0.06), rgba(14, 165, 233, 0.04));
+        }
+
+        .service-card {
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+        }
+
+        .contact-wrapper {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+        }
+
+        footer {
+            border-top: 1px solid rgba(15, 23, 42, 0.08);
+        }
+
+        .github-watermark {
+            color: rgba(15, 23, 42, 0.35);
+        }
+
+        .github-watermark:hover {
+            color: var(--accent);
+        }
+
+        .back-to-portfolio {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            top: auto;
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--accent);
+            padding: 12px 16px;
+            border-radius: 999px;
+            text-decoration: none;
+            z-index: 2000;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            transition: all 0.25s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-to-portfolio:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 50px rgba(15, 23, 42, 0.16);
+        }
+
+        .gallery {
+            padding-top: 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            grid-column: span 4;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            background: #fff;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .gallery-caption {
+            padding: 14px 16px;
+            color: rgba(15, 23, 42, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .section-media {
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            background: #fff;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+            margin: 22px auto 18px;
+        }
+
+        .section-media img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+        }
+
+        .services .services-grid {
+            margin-top: 18px;
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 28px;
+            align-items: center;
+            text-align: left;
+        }
+
+        .split-media {
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+            background: #fff;
+        }
+
+        .split-media img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+        }
+
+        @media (max-width: 900px) {
+            .split {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .split-media img {
+                height: 280px;
+            }
+            .section-media img {
+                height: 240px;
+            }
+        }
+
+        @media (max-width: 960px) {
+            .gallery-item {
+                grid-column: span 6;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .gallery-item {
+                grid-column: span 12;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-to-portfolio">
+        <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+
+    <nav class="navbar">
+        <div class="logo">Clínica Lumina<span>.</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#servicos">Procedimentos</a></li>
+            <li><a href="#contato" class="btn-nav">Agendar</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="badge">Lumina Prime Care</span>
+            <h1>Beleza natural com <span class="highlight">protocolo premium</span></h1>
+            <p>Avaliação estratégica, técnicas avançadas e atendimento humanizado para quem quer resultado visível com segurança.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/5561982352620?text=Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o" class="btn-primary">Agendar avaliação VIP</a>
+                <a href="#servicos" class="btn-secondary">Ver protocolos</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-wrapper">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop" alt="Profissional de estética">
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sobre</h2>
+                <p>Compromisso com segurança, conforto e resultados.</p>
+            </div>
+            <div class="about-content">
+                <div class="split">
+                    <div class="split-media">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?q=80&w=1400&auto=format&fit=crop" alt="Atendimento em estética facial">
+                    </div>
+                    <div class="about-text">
+                    <p>Atendimento especializado com protocolos personalizados. Utilizamos equipamentos aprovados pela Anvisa e técnicas com evidência clínica.</p>
+                    <p>Foco em resultados naturais, acompanhamento próximo e transparência em cada etapa do tratamento.</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <h3>Avaliação</h3>
+                            <p>plano individual</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>Protocolos</h3>
+                            <p>clareza no processo</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>WhatsApp</h3>
+                            <p>agendamento</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ambiente</h2>
+                <p>Estrutura confortável e atendimento de alto padrão.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?q=80&w=1200&auto=format&fit=crop" alt="Recepção da clínica">
+                    <div class="gallery-caption">Recepção acolhedora e atendimento humanizado</div>
+                </div>
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?q=80&w=1200&auto=format&fit=crop" alt="Sala de procedimentos">
+                    <div class="gallery-caption">Salas equipadas e protocolos de segurança</div>
+                </div>
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=1200&auto=format&fit=crop" alt="Equipamentos de estética">
+                    <div class="gallery-caption">Tecnologia atual para resultados naturais</div>
+                </div>
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop" alt="Profissional realizando procedimento">
+                    <div class="gallery-caption">Profissionais certificados e técnica precisa</div>
+                </div>
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=1200&auto=format&fit=crop" alt="Produtos dermatológicos">
+                    <div class="gallery-caption">Produtos selecionados com respaldo técnico</div>
+                </div>
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?q=80&w=1200&auto=format&fit=crop" alt="Ambiente relaxante">
+                    <div class="gallery-caption">Ambiente relaxante para melhor experiência</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Procedimentos</h2>
+                <p>Tratamentos com protocolos atuais e seguros.</p>
+            </div>
+            <div class="section-media">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?q=80&w=1600&auto=format&fit=crop" alt="Procedimento estético">
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-smile"></i></div>
+                    <h3>Harmonização Facial</h3>
+                    <p>Equilíbrio das proporções e realce de traços com naturalidade.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-spa"></i></div>
+                    <h3>Limpeza de Pele</h3>
+                    <p>Protocolos para controle de oleosidade e revitalização.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Depilação a Laser</h3>
+                    <p>Tecnologia eficaz e segura para todos os fototipos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-syringe"></i></div>
+                    <h3>Toxina Botulínica</h3>
+                    <p>Suavização de linhas com técnica precisa e efeito natural.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-droplet"></i></div>
+                    <h3>Skinbooster</h3>
+                    <p>Hidratação profunda e melhora da textura cutânea.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                    <h3>Microagulhamento</h3>
+                    <p>Indução de colágeno para cicatrizes e rejuvenescimento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="contact">
+        <div class="container">
+            <div class="section-media">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=1600&auto=format&fit=crop" alt="Ambiente de clínica">
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2>Agende sua avaliação</h2>
+                    <p>Envie uma mensagem e nossa equipe retornará com as melhores opções para você.</p>
+                    <div class="info-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Asa Norte, Brasília - DF</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contato@clinicaaurea.com.br</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>(61) 98235-2620</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Seu Nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Seu Telefone/WhatsApp" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Tratamento de interesse" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Clínica Lumina. Todos os direitos reservados.</p>
+            <a href="https://github.com/NapierX7/" target="_blank" class="github-watermark">
+                <i class="fab fa-github"></i> Desenvolvido por Napier
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                navLinks.classList.remove('active');
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = contactForm.querySelector('input[type="text"]')?.value?.trim() || '';
+                const phone = contactForm.querySelector('input[type="tel"]')?.value?.trim() || '';
+                const interest = contactForm.querySelector('textarea')?.value?.trim() || '';
+
+                const lines = [
+                    'Olá! Quero agendar uma avaliação.',
+                    name ? `Nome: ${name}` : null,
+                    phone ? `WhatsApp: ${phone}` : null,
+                    interest ? `Interesse: ${interest}` : null
+                ].filter(Boolean);
+
+                window.open(`https://wa.me/5561982352620?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener,noreferrer');
+                contactForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>

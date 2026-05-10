@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Áurea Care | Institucional</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Back to Portfolio Button -->
+    <a href="../site/index.html" class="back-to-portfolio" style="position: fixed; bottom: 20px; left: 20px; background: #0ea5a6; color: #fff; padding: 12px 18px; border-radius: 999px; text-decoration: none; z-index: 10000; box-shadow: 0 10px 28px rgba(0,0,0,0.35); font-family: 'Montserrat', sans-serif; font-weight: 700; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.22); transition: all 0.25s ease; backdrop-filter: blur(10px);">
+        <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+
+    <!-- Navbar -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">Áurea <span class="highlight">Care</span></a>
+            <nav class="navbar">
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#home" class="nav-link">Início</a></li>
+                    <li><a href="#about" class="nav-link">Clínica</a></li>
+                    <li><a href="#services" class="nav-link">Especialidades</a></li>
+                    <li><a href="#portfolio" class="nav-link">Estrutura</a></li>
+                    <li><a href="#contact" class="btn-primary-nav">Agendar</a></li>
+                </ul>
+                <button class="hamburger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+    <div class="menu-overlay" aria-hidden="true"></div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="hero-tag">Estética e Saúde</span>
+                <h1>Procedimentos com <span class="text-gradient">protocolo</span>, cuidado e resultado natural</h1>
+                <p>Atendimento com avaliação, plano personalizado e acompanhamento. Estrutura preparada para receber você com conforto, privacidade e clareza no processo.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn-primary large">Agendar avaliação</a>
+                    <a href="#services" class="btn-outline large">Ver especialidades</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://placehold.co/600x500/0ea5a6/ffffff?text=Clinica+Aurea" alt="Clínica Áurea">
+                <div class="floating-card card-1">
+                    <div class="icon-box"><i class="fas fa-calendar-check"></i></div>
+                    <div>
+                        <span class="card-title">Agenda</span>
+                        <span class="card-desc">por agendamento</span>
+                    </div>
+                </div>
+                <div class="floating-card card-2">
+                    <div class="icon-box"><i class="fas fa-user-nurse"></i></div>
+                    <div>
+                        <span class="card-title">Equipe</span>
+                        <span class="card-desc">atendimento humanizado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <h3>Plano</h3>
+                <p>Avaliação + acompanhamento</p>
+            </div>
+            <div class="stat-item">
+                <h3>Protocolos</h3>
+                <p>clareza no processo</p>
+            </div>
+            <div class="stat-item">
+                <h3>Privacidade</h3>
+                <p>ambiente reservado</p>
+            </div>
+            <div class="stat-item">
+                <h3>Agilidade</h3>
+                <p>WhatsApp e retorno</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section-padding">
+        <div class="container about-container">
+            <div class="about-img">
+                <img src="https://placehold.co/500x600/0f172a/ffffff?text=Atendimento" alt="Atendimento da clínica">
+                <div class="experience-badge">
+                    <span class="years">100%</span>
+                    <span class="text">foco em<br>acolhimento</span>
+                </div>
+            </div>
+            <div class="about-text">
+                <h4 class="section-subtitle">QUEM SOMOS</h4>
+                <h2 class="section-title">Uma clínica feita para atender com clareza</h2>
+                <p>A Clínica Áurea nasceu para unir técnica, protocolo e atendimento humano. Aqui, você entende o que será feito, por que será feito e quais são os próximos passos.</p>
+                <p>O foco é oferecer uma experiência organizada: avaliação, plano, execução e acompanhamento.</p>
+                <ul class="about-list">
+                    <li><i class="fas fa-check-circle"></i> Avaliação e plano individual</li>
+                    <li><i class="fas fa-check-circle"></i> Orientação pré e pós</li>
+                    <li><i class="fas fa-check-circle"></i> Ambiente confortável e reservado</li>
+                    <li><i class="fas fa-check-circle"></i> Atendimento por agendamento</li>
+                </ul>
+                <a href="#contact" class="btn-text">Agendar avaliação <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section-padding bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <h4 class="section-subtitle">ESPECIALIDADES</h4>
+                <h2 class="section-title">Atendimentos e procedimentos</h2>
+                <p class="section-desc">Opções para estética facial e corporal, sempre começando pela avaliação e definição de um plano.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-clipboard-check"></i></div>
+                    <h3>Avaliação e plano</h3>
+                    <p>Entendimento do objetivo, análise e sugestão de protocolo com etapas e cuidados.</p>
+                    <a href="#" class="service-link">Saiba mais</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-face-smile"></i></div>
+                    <h3>Estética facial</h3>
+                    <p>Procedimentos voltados para harmonização, textura e viço, com foco em naturalidade.</p>
+                    <a href="#" class="service-link">Saiba mais</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-person-walking"></i></div>
+                    <h3>Estética corporal</h3>
+                    <p>Tratamentos para contorno, firmeza e bem-estar, respeitando indicação e limites.</p>
+                    <a href="#" class="service-link">Saiba mais</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3>Cuidados e acompanhamento</h3>
+                    <p>Orientações e check-ins após o procedimento para garantir consistência no processo.</p>
+                    <a href="#" class="service-link">Saiba mais</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-spa"></i></div>
+                    <h3>Protocolos combinados</h3>
+                    <p>Organização de etapas para alcançar o objetivo com previsibilidade e cuidado.</p>
+                    <a href="#" class="service-link">Saiba mais</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Pré-consulta no WhatsApp</h3>
+                    <p>Triagem simples para alinhar objetivo, horários e orientações iniciais.</p>
+                    <a href="#" class="service-link">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <h4 class="section-subtitle">A CLÍNICA</h4>
+                <h2 class="section-title">Estrutura e ambiente</h2>
+                <p class="section-desc">Um espaço pensado para atender com conforto, organização e privacidade.</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://placehold.co/400x300/0f172a/ffffff?text=Recepcao" alt="Recepção">
+                    <div class="portfolio-overlay">
+                        <h3>Recepção</h3>
+                        <p>Organização e acolhimento</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://placehold.co/400x300/0f172a/ffffff?text=Sala+de+Procedimentos" alt="Sala de procedimentos">
+                    <div class="portfolio-overlay">
+                        <h3>Sala de procedimentos</h3>
+                        <p>Ambiente preparado</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://placehold.co/400x300/0f172a/ffffff?text=Consultorio" alt="Consultório">
+                    <div class="portfolio-overlay">
+                        <h3>Consultório</h3>
+                        <p>Avaliação e plano</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section-padding bg-dark text-white">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h4 class="section-subtitle light">FALE CONOSCO</h4>
+                    <h2 class="section-title text-white">Agende sua avaliação</h2>
+                    <p>Envie uma mensagem e diga seu objetivo. A gente confirma horários, tira dúvidas e orienta o próximo passo.</p>
+                    
+                    <div class="info-items">
+                        <div class="info-item">
+                            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <h3>Endereço</h3>
+                                <p>Brasília - DF (atendimento por agendamento)</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <h3>Email</h3>
+                                <p>contato@clinicaaurea.com.br</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                            <div>
+                                <h3>Telefone</h3>
+                                <p>(61) 90000-0000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label>Nome Completo</label>
+                            <input type="text" placeholder="Digite seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="Digite seu email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Objetivo</label>
+                            <select>
+                                <option>Avaliação</option>
+                                <option>Procedimentos faciais</option>
+                                <option>Procedimentos corporais</option>
+                                <option>Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Mensagem</label>
+                            <textarea rows="4" placeholder="Conte seu objetivo e se já tem algum prazo." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary full-width">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-col">
+                <a href="#" class="logo footer-logo">Clínica <span class="highlight">Áurea</span></a>
+                <p>Atendimento com protocolo, clareza e cuidado.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#about">Clínica</a></li>
+                    <li><a href="#services">Especialidades</a></li>
+                    <li><a href="#portfolio">Estrutura</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Atendimentos</h3>
+                <ul>
+                    <li><a href="#services">Avaliação</a></li>
+                    <li><a href="#services">Facial</a></li>
+                    <li><a href="#services">Corporal</a></li>
+                    <li><a href="#services">Acompanhamento</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contato</h3>
+                <p>Atendimento por agendamento.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Seu email">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 Clínica Áurea. Todos os direitos reservados.</p>
+                <a href="https://github.com/NapierX7/" target="_blank" class="github-watermark">
+                    <i class="fab fa-github"></i> Desenvolvido por Napier
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

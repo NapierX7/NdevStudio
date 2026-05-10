@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Prime | Agendamento Online</title>
+    <link rel="stylesheet" href="../css/minisite.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #070a12;
+            --card-bg: #0f172a;
+            --text-primary: #f8fafc;
+            --text-secondary: rgba(248, 250, 252, 0.72);
+            --accent: #f59e0b;
+            --accent-hover: #d97706;
+            --highlight: #22c55e;
+        }
+
+        .navbar {
+            background-color: rgba(7, 10, 18, 0.92);
+            border-bottom: 1px solid rgba(245, 158, 11, 0.14);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .badge {
+            background-color: rgba(245, 158, 11, 0.12);
+            color: rgba(255, 251, 235, 0.95);
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(245, 158, 11, 0.6);
+            color: rgba(255, 251, 235, 0.95);
+        }
+
+        .about {
+            background: radial-gradient(900px 400px at 20% 0%, rgba(245, 158, 11, 0.12), transparent 60%),
+                        radial-gradient(900px 400px at 85% 15%, rgba(34, 197, 94, 0.12), transparent 60%);
+        }
+
+        .service-card {
+            border: 1px solid rgba(245, 158, 11, 0.12);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.42);
+        }
+
+        .service-card:hover {
+            border-color: rgba(245, 158, 11, 0.55);
+        }
+
+        .contact-wrapper {
+            border: 1px solid rgba(245, 158, 11, 0.12);
+        }
+
+        .back-to-portfolio {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            top: auto;
+            background: rgba(15, 23, 42, 0.88);
+            color: rgba(248, 250, 252, 0.92);
+            padding: 12px 16px;
+            border-radius: 999px;
+            text-decoration: none;
+            z-index: 2000;
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            transition: all 0.25s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-to-portfolio:hover {
+            transform: translateY(-2px);
+            border-color: rgba(245, 158, 11, 0.55);
+        }
+
+        .booking-layout {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 18px;
+            align-items: start;
+        }
+
+        .booking-panel {
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(15, 23, 42, 0.55);
+            padding: 18px 18px;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+        }
+
+        .booking-steps {
+            display: grid;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .booking-step {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: rgba(248, 250, 252, 0.78);
+        }
+
+        .booking-step i {
+            margin-top: 3px;
+            color: rgba(245, 158, 11, 0.95);
+        }
+
+        .booking-form {
+            display: grid;
+            gap: 12px;
+        }
+
+        .booking-form label {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: rgba(248, 250, 252, 0.9);
+        }
+
+        .booking-form input,
+        .booking-form select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(2, 6, 23, 0.35);
+            color: rgba(248, 250, 252, 0.92);
+            outline: none;
+        }
+
+        .booking-form input::placeholder {
+            color: rgba(148, 163, 184, 0.9);
+        }
+
+        .booking-form select:disabled,
+        .booking-form input:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .slot-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .slot-btn {
+            padding: 10px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(248, 250, 252, 0.9);
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .slot-btn:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .slot-btn.is-selected {
+            border-color: rgba(245, 158, 11, 0.7);
+            background: rgba(245, 158, 11, 0.14);
+        }
+
+        .slot-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .booking-actions {
+            display: grid;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .hint {
+            color: rgba(248, 250, 252, 0.7);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 980px) {
+            .booking-layout {
+                grid-template-columns: 1fr;
+            }
+            .slot-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-to-portfolio" aria-label="Voltar para o site">
+        <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+
+    <nav class="navbar">
+        <div class="logo">Barbearia <span>Prime</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Início</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#agendar" class="btn-nav">Agendar</a></li>
+        </ul>
+        <div class="menu-toggle" aria-label="Abrir menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="badge"><i class="fas fa-calendar-check"></i> Agende em 30 segundos</span>
+            <h1>Seu corte marcado sem conversa — <span class="highlight">só escolher o horário</span></h1>
+            <p>Este é um modelo com sistema de agendamento embutido: selecione serviço, profissional e horário em poucos cliques.</p>
+            <div class="hero-buttons">
+                <a href="#agendar" class="btn-primary">Agendar agora</a>
+                <a href="#servicos" class="btn-secondary">Ver serviços</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-wrapper">
+                <img src="https://placehold.co/560x560/070a12/f59e0b?text=Barbearia" alt="Barbearia moderna">
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Serviços</h2>
+                <p>Escolha rápido. A agenda faz o resto.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>Combos</h3>
+                    <p>Corte + barba e pacotes prontos para ganhar tempo e manter padrão.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-scissors"></i></div>
+                    <h3>Cabelo</h3>
+                    <p>Do social ao degradê, com acabamento e finalização.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-user-ninja"></i></div>
+                    <h3>Barba</h3>
+                    <p>Barba desenhada e alinhada, com conforto e precisão.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                    <h3>Progressiva</h3>
+                    <p>Alinhamento e tratamento para quem quer praticidade no dia a dia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="agendar" class="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2>Agendamento online</h2>
+                    <p>Escolha o serviço, selecione o profissional e finalize com seus dados.</p>
+                    <div class="booking-steps">
+                        <div class="booking-step"><i class="fas fa-layer-group"></i><span>1) Serviço</span></div>
+                        <div class="booking-step"><i class="fas fa-user"></i><span>2) Profissional</span></div>
+                        <div class="booking-step"><i class="fas fa-calendar"></i><span>3) Data e horário</span></div>
+                        <div class="booking-step"><i class="fas fa-circle-check"></i><span>4) Confirmar</span></div>
+                    </div>
+                </div>
+                <div class="booking-panel">
+                    <div class="booking-layout">
+                        <form class="booking-form" id="booking-form">
+                            <div style="display: grid; gap: 8px;">
+                                <label for="bk-service">Serviço</label>
+                                <select id="bk-service" required></select>
+                            </div>
+                            <div style="display: grid; gap: 8px;">
+                                <label for="bk-pro">Profissional</label>
+                                <select id="bk-pro" required></select>
+                            </div>
+                            <div style="display: grid; gap: 8px;">
+                                <label for="bk-date">Data</label>
+                                <select id="bk-date" required></select>
+                            </div>
+                            <div style="display: grid; gap: 10px;">
+                                <label>Horário</label>
+                                <div class="slot-grid" id="bk-slots" aria-label="Horários disponíveis"></div>
+                                <input id="bk-time" name="bk-time" type="hidden" required>
+                            </div>
+                            <div style="display: grid; gap: 8px;">
+                                <label for="bk-name">Seu nome</label>
+                                <input id="bk-name" type="text" placeholder="Ex: João" autocomplete="name" required>
+                            </div>
+                            <div style="display: grid; gap: 8px;">
+                                <label for="bk-phone">WhatsApp</label>
+                                <input id="bk-phone" type="tel" placeholder="Ex: (61) 9xxxx-xxxx" autocomplete="tel" inputmode="tel" required>
+                            </div>
+                            <div class="booking-actions">
+                                <button type="submit" class="btn-primary full-width"><i class="fas fa-calendar-check"></i> Confirmar agendamento</button>
+                                <div class="hint">Esse é um demo do fluxo de agendamento. No SaaS, isso salva no painel e bloqueia o horário automaticamente.</div>
+                            </div>
+                        </form>
+                        <div class="booking-panel">
+                            <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Resumo</h3>
+                            <div class="hint" id="bk-summary" style="display: grid; gap: 10px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Barbearia Prime. Todos os direitos reservados.</p>
+            <a href="https://github.com/NapierX7/" target="_blank" class="github-watermark">
+                <i class="fab fa-github"></i> Desenvolvido por Napier
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                navLinks.classList.remove('active');
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const serviceSelect = document.getElementById('bk-service');
+        const proSelect = document.getElementById('bk-pro');
+        const dateSelect = document.getElementById('bk-date');
+        const slotsEl = document.getElementById('bk-slots');
+        const timeInput = document.getElementById('bk-time');
+        const summaryEl = document.getElementById('bk-summary');
+        const form = document.getElementById('booking-form');
+
+        const SERVICES = [
+            { id: 'combo', label: 'Combo (Corte + Barba)', minutes: 60 },
+            { id: 'corte', label: 'Corte Masculino', minutes: 40 },
+            { id: 'barba', label: 'Barba Completa', minutes: 30 },
+            { id: 'progressiva', label: 'Progressiva', minutes: 90 }
+        ];
+
+        const PROS = [
+            { id: 'pro-1', label: 'Profissional 1' },
+            { id: 'pro-2', label: 'Profissional 2' },
+            { id: 'pro-3', label: 'Profissional 3' }
+        ];
+
+        const pad = (n) => String(n).padStart(2, '0');
+
+        const formatDateLabel = (date) => {
+            const weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+            return `${weekdays[date.getDay()]} • ${pad(date.getDate())}/${pad(date.getMonth() + 1)}`;
+        };
+
+        const formatISODate = (date) => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+
+        const makeSlots = () => {
+            const slots = [];
+            for (let h = 9; h <= 18; h += 1) {
+                slots.push(`${pad(h)}:00`);
+                slots.push(`${pad(h)}:30`);
+            }
+            slots.push('19:00');
+            return slots;
+        };
+
+        const renderSlots = () => {
+            const selected = String(timeInput.value || '');
+            const slots = makeSlots();
+            slotsEl.innerHTML = '';
+            for (const t of slots) {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `slot-btn${t === selected ? ' is-selected' : ''}`;
+                btn.textContent = t;
+                btn.addEventListener('click', () => {
+                    timeInput.value = t;
+                    renderSlots();
+                    renderSummary();
+                });
+                slotsEl.appendChild(btn);
+            }
+        };
+
+        const renderSummary = () => {
+            const service = SERVICES.find((s) => s.id === serviceSelect.value);
+            const pro = PROS.find((p) => p.id === proSelect.value);
+            const date = dateSelect.value;
+            const time = timeInput.value;
+            const name = document.getElementById('bk-name').value.trim();
+            const phone = document.getElementById('bk-phone').value.trim();
+
+            const lines = [
+                service ? `Serviço: ${service.label} (${service.minutes} min)` : null,
+                pro ? `Profissional: ${pro.label}` : null,
+                date ? `Data: ${date}` : null,
+                time ? `Horário: ${time}` : null,
+                name ? `Nome: ${name}` : null,
+                phone ? `WhatsApp: ${phone}` : null
+            ].filter(Boolean);
+
+            summaryEl.innerHTML = lines.map((l) => `<div>${l}</div>`).join('');
+        };
+
+        const initSelect = (select, items, placeholder) => {
+            select.innerHTML = '';
+            const opt0 = document.createElement('option');
+            opt0.value = '';
+            opt0.textContent = placeholder;
+            opt0.disabled = true;
+            opt0.selected = true;
+            select.appendChild(opt0);
+            for (const it of items) {
+                const opt = document.createElement('option');
+                opt.value = it.id;
+                opt.textContent = it.label;
+                select.appendChild(opt);
+            }
+        };
+
+        initSelect(serviceSelect, SERVICES, 'Selecione um serviço');
+        initSelect(proSelect, PROS, 'Selecione um profissional');
+
+        dateSelect.innerHTML = '';
+        const now = new Date();
+        for (let i = 0; i < 7; i += 1) {
+            const d = new Date(now);
+            d.setDate(now.getDate() + i);
+            const opt = document.createElement('option');
+            opt.value = formatISODate(d);
+            opt.textContent = formatDateLabel(d);
+            dateSelect.appendChild(opt);
+        }
+
+        serviceSelect.addEventListener('change', () => {
+            renderSummary();
+        });
+        proSelect.addEventListener('change', () => {
+            renderSummary();
+        });
+        dateSelect.addEventListener('change', () => {
+            timeInput.value = '';
+            renderSlots();
+            renderSummary();
+        });
+        document.getElementById('bk-name').addEventListener('input', renderSummary);
+        document.getElementById('bk-phone').addEventListener('input', renderSummary);
+
+        renderSlots();
+        renderSummary();
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!timeInput.value) return;
+
+            const service = SERVICES.find((s) => s.id === serviceSelect.value);
+            const pro = PROS.find((p) => p.id === proSelect.value);
+            const date = dateSelect.value;
+            const time = timeInput.value;
+            const name = document.getElementById('bk-name').value.trim();
+            const phone = document.getElementById('bk-phone').value.trim();
+
+            const lines = [
+                'Olá! Quero agendar um horário (demo).',
+                service ? `Serviço: ${service.label}` : null,
+                pro ? `Profissional: ${pro.label}` : null,
+                date ? `Data: ${date}` : null,
+                time ? `Horário: ${time}` : null,
+                name ? `Nome: ${name}` : null,
+                phone ? `WhatsApp: ${phone}` : null
+            ].filter(Boolean);
+
+            const url = `https://wa.me/5561982352620?text=${encodeURIComponent(lines.join('\\n'))}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
+        });
+    </script>
+</body>
+</html>

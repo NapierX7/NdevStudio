@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Contábil | Contabilidade Consultiva</title>
+    <link rel="stylesheet" href="../css/minisite.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b1222;
+            --card-bg: #101a33;
+            --text-primary: #f8fafc;
+            --text-secondary: rgba(248, 250, 252, 0.72);
+            --accent: #22c55e;
+            --accent-hover: #16a34a;
+            --highlight: #60a5fa;
+        }
+
+        .navbar {
+            background-color: rgba(11, 18, 34, 0.92);
+            border-bottom: 1px solid rgba(34, 197, 94, 0.14);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .badge {
+            background-color: rgba(34, 197, 94, 0.12);
+            color: rgba(240, 253, 244, 0.95);
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(34, 197, 94, 0.6);
+            color: rgba(240, 253, 244, 0.95);
+        }
+
+        .about {
+            background: radial-gradient(900px 400px at 20% 0%, rgba(34, 197, 94, 0.12), transparent 60%),
+                        radial-gradient(900px 400px at 80% 10%, rgba(96, 165, 250, 0.12), transparent 60%);
+        }
+
+        .service-card {
+            border: 1px solid rgba(34, 197, 94, 0.12);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+        }
+
+        .service-card:hover {
+            border-color: rgba(34, 197, 94, 0.6);
+        }
+
+        .contact-wrapper {
+            border: 1px solid rgba(34, 197, 94, 0.12);
+        }
+
+        .back-to-portfolio {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            top: auto;
+            background: rgba(16, 26, 51, 0.92);
+            color: rgba(248, 250, 252, 0.92);
+            padding: 12px 16px;
+            border-radius: 999px;
+            text-decoration: none;
+            z-index: 2000;
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.4);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(34, 197, 94, 0.22);
+            transition: all 0.25s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-to-portfolio:hover {
+            transform: translateY(-2px);
+            border-color: rgba(34, 197, 94, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-to-portfolio" aria-label="Voltar para o site">
+        <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+
+    <nav class="navbar">
+        <div class="logo">Nexus <span>Contábil</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#contato" class="btn-nav">Falar agora</a></li>
+        </ul>
+        <div class="menu-toggle" aria-label="Abrir menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="badge"><i class="fas fa-shield-halved"></i> Contabilidade consultiva</span>
+            <h1>Organize sua empresa, pague o <span class="highlight">justo</span> e tenha clareza no caixa</h1>
+            <p>Abertura, fiscal e folha com acompanhamento. Atendimento objetivo e direto no WhatsApp para você não perder tempo.</p>
+            <div class="hero-buttons">
+                <a href="#contato" class="btn-primary">Pedir proposta</a>
+                <a href="#servicos" class="btn-secondary">Ver serviços</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-wrapper">
+                <img src="https://placehold.co/520x560/0b1222/22c55e?text=Contabilidade" alt="Escritório de contabilidade">
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sobre a Nexus</h2>
+                <p>Processo simples, comunicação clara e foco no que move o negócio.</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Este é um modelo de site para contabilidade com foco em conversão: explica o básico, dá sinais de confiança e leva o cliente para um contato rápido.</p>
+                    <p>Ideal para contadores que querem captar empresas e MEIs, com triagem e proposta objetiva.</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <h3>+300</h3>
+                            <p>Clientes atendidos</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>48h</h3>
+                            <p>Onboarding</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>100%</h3>
+                            <p>Atendimento no WhatsApp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Serviços principais</h2>
+                <p>O essencial para manter a empresa em dia e com previsibilidade.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-building"></i></div>
+                    <h3>Abertura e regularização</h3>
+                    <p>MEI, Simples, LTDA e regularizações. Checklist rápido para começar sem dor de cabeça.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-receipt"></i></div>
+                    <h3>Fiscal e tributário</h3>
+                    <p>Apuração, obrigações e orientação para pagar o justo com segurança e clareza.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <h3>Folha de pagamento</h3>
+                    <p>Admissão, rescisão e rotinas trabalhistas com organização e acompanhamento.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>BPO financeiro</h3>
+                    <p>Organização do financeiro, relatórios e apoio na tomada de decisão.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-file-circle-check"></i></div>
+                    <h3>Certidões e suporte</h3>
+                    <p>Emissões, orientação e suporte objetivo para resolver o que precisa no dia a dia.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-comments"></i></div>
+                    <h3>Atendimento consultivo</h3>
+                    <p>Você entende o que está sendo feito e quais são os próximos passos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2>Quer uma proposta?</h2>
+                    <p>Me diga o tipo de empresa, cidade e faturamento aproximado. Eu retorno com os próximos passos.</p>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contato@nexuscontabil.com.br</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>(11) 99999-9999</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Empresa (opcional)">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Conte seu caso (MEI, Simples, funcionários, etc.)" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">Enviar no WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Nexus Contábil. Todos os direitos reservados.</p>
+            <a href="https://github.com/NapierX7/" target="_blank" class="github-watermark">
+                <i class="fab fa-github"></i> Desenvolvido por Napier
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                navLinks.classList.remove('active');
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = contactForm.querySelector('input[type="text"]')?.value?.trim() || '';
+                const business = contactForm.querySelectorAll('input[type="text"]')[1]?.value?.trim() || '';
+                const message = contactForm.querySelector('textarea')?.value?.trim() || '';
+
+                const lines = [
+                    'Olá! Quero uma proposta de contabilidade.',
+                    name ? `Nome: ${name}` : null,
+                    business ? `Empresa: ${business}` : null,
+                    message ? `Detalhes: ${message}` : null
+                ].filter(Boolean);
+
+                const url = `https://wa.me/5561982352620?text=${encodeURIComponent(lines.join('\\n'))}`;
+                window.open(url, '_blank', 'noopener,noreferrer');
+            });
+        }
+    </script>
+</body>
+</html>

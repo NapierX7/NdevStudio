@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas Trabalhista | Advocacia Estratégica</title>
+    <link rel="stylesheet" href="../css/minisite.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b1020;
+            --card-bg: #101a33;
+            --text-primary: #f8fafc;
+            --text-secondary: rgba(248, 250, 252, 0.72);
+            --accent: #d4b04c;
+            --accent-hover: #b8922f;
+            --highlight: #60a5fa;
+        }
+
+        .navbar {
+            background-color: rgba(11, 16, 32, 0.92);
+            border-bottom: 1px solid rgba(212, 176, 76, 0.14);
+        }
+
+        .logo span { color: var(--accent); }
+        .logo img { height: 28px; width: auto; display: inline-block; vertical-align: middle; margin-right: 10px; border-radius: 4px; }
+
+        .btn-secondary:hover {
+            border-color: rgba(212, 176, 76, 0.6);
+            color: var(--accent);
+        }
+
+        .about {
+            background: radial-gradient(900px 400px at 20% 0%, rgba(212, 176, 76, 0.12), transparent 60%),
+                        radial-gradient(900px 400px at 80% 10%, rgba(96, 165, 250, 0.12), transparent 60%);
+        }
+
+        .service-card {
+            border: 1px solid rgba(212, 176, 76, 0.12);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+        }
+
+        .service-card:hover {
+            border-color: rgba(212, 176, 76, 0.6);
+        }
+
+        .contact-wrapper {
+            border: 1px solid rgba(212, 176, 76, 0.12);
+        }
+
+        .back-to-portfolio {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            top: auto;
+            background: rgba(16, 26, 51, 0.92);
+            color: rgba(248, 250, 252, 0.92);
+            padding: 12px 16px;
+            border-radius: 999px;
+            text-decoration: none;
+            z-index: 2000;
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.4);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(212, 176, 76, 0.22);
+            transition: all 0.25s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-to-portfolio:hover {
+            transform: translateY(-2px);
+            border-color: rgba(212, 176, 76, 0.5);
+        }
+
+        .gallery {
+            padding-top: 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            grid-column: span 4;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 176, 76, 0.14);
+            background: rgba(16, 26, 51, 0.7);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            filter: saturate(0.95) contrast(1.05);
+        }
+
+        .gallery-caption {
+            padding: 14px 16px;
+            color: rgba(248, 250, 252, 0.78);
+            font-size: 0.95rem;
+        }
+
+        .section-media {
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 176, 76, 0.14);
+            background: rgba(16, 26, 51, 0.7);
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5);
+            margin: 22px auto 18px;
+        }
+
+        .section-media img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            filter: saturate(0.95) contrast(1.05);
+        }
+
+        .services .services-grid {
+            margin-top: 18px;
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 28px;
+            align-items: center;
+            text-align: left;
+        }
+
+        .split-media {
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 176, 76, 0.14);
+            background: rgba(16, 26, 51, 0.7);
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5);
+        }
+
+        .split-media img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            filter: saturate(0.95) contrast(1.05);
+        }
+
+        @media (max-width: 900px) {
+            .split {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .split-media img {
+                height: 280px;
+            }
+            .section-media img {
+                height: 240px;
+            }
+        }
+
+        @media (max-width: 960px) {
+            .gallery-item {
+                grid-column: span 6;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .gallery-item {
+                grid-column: span 12;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-to-portfolio">
+        <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+
+    <nav class="navbar">
+        <div class="logo">Atlas <span>Trabalhista</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#contato" class="btn-nav">Contato</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="badge">Advocacia Estratégica</span>
+            <h1>Defenda seus direitos com <span class="highlight">estratégia e clareza</span></h1>
+            <p>Atuação trabalhista em Brasília - DF para rescisão, verbas, horas extras, assédio e acordos, com orientação objetiva desde o primeiro contato.</p>
+            <div class="hero-buttons">
+                <a href="#contato" class="btn-primary">Solicitar análise agora</a>
+                <a href="https://wa.me/5561982352620?text=Ol%C3%A1%21%20Quero%20orienta%C3%A7%C3%A3o%20em%20Direito%20Trabalhista.%20Posso%20te%20explicar%20minha%20situa%C3%A7%C3%A3o%3F" class="btn-secondary" target="_blank" rel="noreferrer">WhatsApp</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-wrapper">
+                <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1400&auto=format&fit=crop" alt="Atendimento jurídico">
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sobre</h2>
+                    <p>Atuação em Direito do Trabalho com linguagem simples, triagem objetiva e orientação inicial por WhatsApp.</p>
+            </div>
+            <div class="about-content">
+                <div class="split">
+                    <div class="split-media">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1400&auto=format&fit=crop" alt="Atendimento em Direito de Família">
+                    </div>
+                    <div class="about-text">
+                    <p>Orientação clara e passos definidos para cada situação trabalhista. Linguagem acessível e foco em organizar documentos, prazos e a melhor estratégia.</p>
+                    <p>Atuação informativa e ética, com análise do caso e indicação do melhor caminho (acordo, negociação ou ação).</p>
+                    <div class="stats">
+                        <div class="stat-item"><h3>DF</h3><p>Distrito Federal</p></div>
+                        <div class="stat-item"><h3>Triagem</h3><p>objetiva</p></div>
+                        <div class="stat-item"><h3>WhatsApp</h3><p>Contato rápido</p></div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Credibilidade</h2>
+                <p>Atendimento humano, postura profissional e comunicação direta.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1523958203904-cdcb402031fd?q=80&w=1200&auto=format&fit=crop" alt="Documentos e organização">
+                    <div class="gallery-caption">Organização de documentos e prazos</div>
+                </div>
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200&auto=format&fit=crop" alt="Atendimento">
+                    <div class="gallery-caption">Atendimento discreto e informativo</div>
+                </div>
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1521791055366-0d553872125f?q=80&w=1200&auto=format&fit=crop" alt="Ambiente">
+                    <div class="gallery-caption">Postura profissional e ética</div>
+                </div>
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop" alt="Sala">
+                    <div class="gallery-caption">Ambiente preparado para negociações</div>
+                </div>
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1521791055366-0d553872125f?q=80&w=1200&auto=format&fit=crop" alt="Tecnologia">
+                    <div class="gallery-caption">Tecnologia e agilidade</div>
+                </div>
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop" alt="Atuação">
+                    <div class="gallery-caption">Estratégia definida para cada caso</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Serviços</h2>
+                <p>Direito do Trabalho com linguagem clara e passos definidos.</p>
+            </div>
+            <div class="section-media">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1523958203904-cdcb402031fd?q=80&w=1600&auto=format&fit=crop" alt="Atendimento trabalhista">
+            </div>
+            <div class="services-grid">
+                <div class="service-card"><div class="icon"><i class="fas fa-file-signature"></i></div><h3>Rescisão e verbas</h3><p>Análise do termo, conferência de valores e orientação do próximo passo (cobrança, acordo ou ação).</p></div>
+                <div class="service-card"><div class="icon"><i class="fas fa-clock"></i></div><h3>Horas extras</h3><p>Verificação de jornada, banco de horas e adicionais com base em documentos e contexto.</p></div>
+                <div class="service-card"><div class="icon"><i class="fas fa-triangle-exclamation"></i></div><h3>Assédio e danos</h3><p>Orientação sobre registro, provas e estratégia para proteger seus direitos com segurança.</p></div>
+                <div class="service-card"><div class="icon"><i class="fas fa-handshake"></i></div><h3>Acordos</h3><p>Negociação e formalização com clareza de termos, prazos e riscos.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Depoimentos</h2>
+                <p>Exemplos de feedback (substituir pelos reais quando tiver).</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1200&auto=format&fit=crop" alt="Avaliações">
+                    <div class="gallery-caption">“Atendimento claro e rápido. Entendi tudo antes de decidir.”</div>
+                </div>
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200&auto=format&fit=crop" alt="Depoimentos">
+                    <div class="gallery-caption">“Me orientou nos documentos e no que fazer primeiro.”</div>
+                </div>
+                <div class="gallery-item">
+                    <img loading="lazy" src="https://images.unsplash.com/photo-1521791055366-0d553872125f?q=80&w=1200&auto=format&fit=crop" alt="Atuação">
+                    <div class="gallery-caption">“Objetividade e profissionalismo do começo ao fim.”</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="contact">
+        <div class="container">
+            <div class="section-media">
+                <img loading="lazy" src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1600&auto=format&fit=crop" alt="Contato e localização">
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2>Fale agora</h2>
+                    <p>Envie sua situação e retornamos com orientação inicial e próximos passos.</p>
+                    <div class="info-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Distrito Federal e proximidades</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>(61) 98235-2620</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Seu Nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Seu E-mail">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Descreva sua situação (rescisão, verbas, horas extras, assédio...)" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">Enviar no WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Advocacia Atlas. Todos os direitos reservados.</p>
+            <a href="https://github.com/NapierX7/" target="_blank" class="github-watermark">
+                <i class="fab fa-github"></i> Desenvolvido por Napier
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                navLinks.classList.remove('active');
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = contactForm.querySelector('input[type="text"]')?.value?.trim() || '';
+                const email = contactForm.querySelector('input[type="email"]')?.value?.trim() || '';
+                const details = contactForm.querySelector('textarea')?.value?.trim() || '';
+
+                const lines = [
+                    'Olá! Quero orientação em Direito Trabalhista.',
+                    name ? `Nome: ${name}` : null,
+                    email ? `Email: ${email}` : null,
+                    details ? `Situação: ${details}` : null
+                ].filter(Boolean);
+
+                window.open(`https://wa.me/5561982352620?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener,noreferrer');
+                contactForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
